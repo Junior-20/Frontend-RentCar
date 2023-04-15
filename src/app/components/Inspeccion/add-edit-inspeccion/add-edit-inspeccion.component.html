@@ -1,0 +1,98 @@
+<h1 mat-dialog-title>{{tituloAccion}} Inspección</h1>
+<div mat-dialog-content>
+    <form [formGroup]="formIns">
+        <mat-grid-list cols="3" rowHeight="92px">
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Vehiculo</mat-label>
+                    <mat-select formControlName="vehiculo">
+                      <mat-option *ngFor="let items of listVehiculos" [value]="items.idVehiculos">
+                        {{items.nombreModelodeVehiculo}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre del Cliente</mat-label>
+                    <mat-select formControlName="idCliente">
+                      <mat-option *ngFor="let items of listClientes" [value]="items.idcliente">
+                        {{items.nombre}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Ralladuras</mat-label>
+                    <input matInput formControlName="tieneRalladuras" autocomplete="off">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Combustible</mat-label>
+                    <input matInput formControlName="cantidadCombustible" autocomplete="off">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Gomas Repuesta</mat-label>
+                    <input matInput formControlName="gomaRespuesta" autocomplete="off">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Gato</mat-label>
+                    <input matInput formControlName="gato" autocomplete="off">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Roturas</mat-label>
+                    <input matInput formControlName="roturas" autocomplete="off">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Estado de Gomas</mat-label>
+                    <input matInput formControlName="estadoGomas" autocomplete="off">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile >
+                <mat-form-field appearance="outline">
+                    <mat-label>Fecha</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="fecha">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="2">
+                <mat-form-field appearance="outline">
+                    <mat-label>Empleado</mat-label>
+                    <mat-select formControlName="empleadoInspeccion">
+                      <mat-option *ngFor="let items of listEmpleados" [value]="items.idEmpleado">
+                        {{items.nombre}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Estado</mat-label>
+                    <mat-select formControlName="estado">
+                        <mat-option value="Disponible">Disponible</mat-option>
+                        <mat-option value="Inactivo">Inactivo</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+    <button mat-raised-button color="primary" (click)="addIns()" [disabled]="formIns.invalid">{{botonAccion}}</button>
+</div>
+
+
+

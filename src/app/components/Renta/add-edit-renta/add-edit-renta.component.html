@@ -1,0 +1,108 @@
+<h1 mat-dialog-title>{{tituloAccion}} Renta</h1>
+<div mat-dialog-content>
+    <form [formGroup]="formRenta">
+        <mat-grid-list cols="3" rowHeight="92px">
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Garatia del Cliente</mat-label>
+                    <mat-select formControlName="docGarantia">
+                      <mat-option *ngFor="let items of listDoc" [value]="items.idDocumento">
+                        {{items.descripcion}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Empleado</mat-label>
+                    <mat-select formControlName="empleado">
+                      <mat-option *ngFor="let items of listEmpleados" [value]="items.idEmpleado">
+                        {{items.nombre}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Vehiculo a Alquilar</mat-label>
+                    <mat-select formControlName="vehiculo">
+                      <mat-option *ngFor="let items of listVehiculos" [value]="items.idVehiculos">
+                        {{items.nombreModelodeVehiculo}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre del Cliente</mat-label>
+                    <mat-select formControlName="cliente">
+                      <mat-option *ngFor="let items of listClientes" [value]="items.idcliente">
+                        {{items.nombre}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Fecha de Renta</mat-label>
+                    <input matInput [matDatepicker]="pickerRenta" formControlName="fechaRenta">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerRenta"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerRenta></mat-datepicker>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Fecha de Devolución</mat-label>
+                    <input matInput [matDatepicker]="pickerDevolucion" formControlName="fechaDevolucion">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerDevolucion"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerDevolucion></mat-datepicker>
+                </mat-form-field>
+            </mat-grid-tile>
+            
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>Monto por Dia</mat-label>
+                    <input matInput formControlName="montoxDia" type="number" class="example-right-align" placeholder="0">
+                    <span matTextPrefix>$&nbsp;</span>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>Cantidad de Dias</mat-label>
+                    <input matInput formControlName="cantidadDias" type="number" class="example-right-align" placeholder="0">
+                    <span matTextPrefix></span>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" floatLabel="always">
+                    <mat-label>Abono</mat-label>
+                    <input matInput formControlName="abono" type="number" class="example-right-align" placeholder="0">
+                    <span matTextPrefix>$&nbsp;</span>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile colspan="2">
+                <mat-form-field appearance="outline">
+                    <mat-label>comentario</mat-label>
+                    <input matInput formControlName="comentario" autocomplete="off">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Estado</mat-label>
+                    <mat-select formControlName="estado">
+                        <mat-option value="Disponible">Disponible</mat-option>
+                        <mat-option value="Inactivo">Inactivo</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+    <button mat-raised-button color="primary" (click)="addRenta()" [disabled]="formRenta.invalid">{{botonAccion}}</button>
+</div>
+
+

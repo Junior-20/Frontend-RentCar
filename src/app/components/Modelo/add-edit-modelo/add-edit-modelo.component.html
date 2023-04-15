@@ -1,0 +1,41 @@
+<h1 mat-dialog-title>{{tituloAccion}} Modelo</h1>
+<div mat-dialog-content>
+    <form [formGroup]="formModelo">
+        <mat-grid-list cols="1" rowHeight="90px">
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre de Marca</mat-label>
+                    <mat-select formControlName="idMarca" >
+                      <mat-option *ngFor="let items of listMarcas" [value]="items.idMarca">
+                        {{items.descripcion}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre de Modelo</mat-label>
+                    <input matInput formControlName="descripcion" autocomplete="off">
+                  </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Estado</mat-label>
+                    <mat-select formControlName="estado">
+                        <mat-option value="Disponible">Disponible</mat-option>
+                        <mat-option value="Inactivo">Inactivo</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </mat-grid-tile>
+          </mat-grid-list>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+    <button mat-raised-button color="primary"
+    (click)="addModelo()"
+    [disabled]="formModelo.invalid"
+    >{{botonAccion}}</button>
+  </div>
+  
+

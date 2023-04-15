@@ -1,0 +1,30 @@
+<h1 mat-dialog-title>{{tituloAccion}} Combustible</h1>
+<div mat-dialog-content>
+    <form [formGroup]="formCombustible">
+        <mat-grid-list cols="1" rowHeight="90px">
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre de Combustible</mat-label>
+                    <input matInput formControlName="descripcion" autocomplete="off">
+                  </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Estado</mat-label>
+                    <mat-select formControlName="estado">
+                        <mat-option value="Disponible">Disponible</mat-option>
+                        <mat-option value="Inactivo">Inactivo</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </mat-grid-tile>
+          </mat-grid-list>
+    </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+  <button mat-raised-button color="primary"
+  (click)="addMarca()"
+  [disabled]="formCombustible.invalid"
+  >{{botonAccion}}</button>
+</div>
+

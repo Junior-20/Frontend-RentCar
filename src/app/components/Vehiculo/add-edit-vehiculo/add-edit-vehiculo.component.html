@@ -1,0 +1,85 @@
+<h1 mat-dialog-title>{{tituloAccion}} Vehiculo</h1>
+<div mat-dialog-content>
+    <form [formGroup]="formVehiculo">
+        <mat-grid-list cols="3" rowHeight="92px">
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Descripcion</mat-label>
+                    <input matInput formControlName="descripcion" autocomplete="off">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>No.Chasis </mat-label>
+                    <input matInput formControlName="noChasis" autocomplete="off">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>No.Motor </mat-label>
+                    <input matInput formControlName="noMotor" autocomplete="off">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>No.Placa </mat-label>
+                    <input matInput formControlName="noPlaca" autocomplete="off">
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Tipo de Vehiculo</mat-label>
+                    <mat-select formControlName="tipoVehiculo">
+                      <mat-option *ngFor="let items of listTiposVh" [value]="items.idTiposVehiculo">
+                        {{items.descripcion}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre de Marca</mat-label>
+                    <mat-select formControlName="marca" >
+                      <mat-option *ngFor="let items of listMarcas" [value]="items.idMarca">
+                        {{items.descripcion}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre de Modelo</mat-label>
+                    <mat-select formControlName="modelo" >
+                      <mat-option *ngFor="let items of listModelos" [value]="items.idModelo">
+                        {{items.descripcion}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Tipo de Combustible</mat-label>
+                    <mat-select formControlName="tipoCombustible" >
+                      <mat-option *ngFor="let items of listCombustibles" [value]="items.idTiposCombustible">
+                        {{items.descripcion}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Estado</mat-label>
+                    <mat-select formControlName="estado">
+                        <mat-option value="Disponible">Disponible</mat-option>
+                        <mat-option value="Inactivo">Inactivo</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+    <button mat-raised-button color="primary" (click)="addVehiculo()" [disabled]="formVehiculo.invalid">{{botonAccion}}</button>
+</div>
+

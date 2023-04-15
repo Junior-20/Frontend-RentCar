@@ -1,0 +1,36 @@
+<div class="parent clearfix">
+    <div class="bg-illustration">
+      <img src="https://i.ibb.co/Pcg0Pk1/logo.png" alt="logo">
+
+      <div class="burger-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    
+    <div class="login">
+      <div class="container">
+        <h1>Start section to access <br/>the rent car</h1>
+    
+        <div class="login-form">
+          <form [formGroup]="loginUsuario">
+            <input type="email" placeholder="E-mail Address" formControlName="email">
+            <input type="password" placeholder="Password" formControlName="password">
+
+            <div class="remember-form">
+              <input type="checkbox">
+              <span>Remember me</span>
+            </div>
+            <div class="forget-pass">
+              <a routerLink="/registrar">Create Account</a>
+            </div>
+
+            <button [disabled]="loginUsuario.invalid" (click)="login()" mat-raised-button color="primary" class="login-button">LOG-IN</button>
+
+          </form>
+        </div>
+    
+      </div>
+      </div>
+  </div>

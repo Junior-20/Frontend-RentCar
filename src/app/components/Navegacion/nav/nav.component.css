@@ -1,0 +1,41 @@
+
+/* Estilo para el mat-sidenav-container */
+/* Estilo para el mat-sidenav-container */
+.sidenav-container {
+  height: 100vh;
+  background-color: #eceff1; /* Color de fondo azul claro */
+}
+
+/* Estilo para el mat-sidenav */
+.mat-sidenav {
+  width: 250px; /* Ancho del sidebar */
+  background-color: #6a74dd; /* Color de fondo azul oscuro */
+  color: #fff; /* Color de texto */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Centrar verticalmente */
+  align-items: center; /* Centrar horizontalmente */
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  padding: 16px; /* Espaciado interno */
+}
+
+/* Estilo para el mat-select */
+.mat-select {
+  width: 100%; /* Ancho del mat-select */
+  margin-bottom: 16px; /* Espacio inferior */
+}
+/* Estilo para los links en el mat-nav-list */
+.mat-nav-list a {
+  color: #ffffff; /* Color de texto más claro */
+}
+
+/* Estilo para los links en el mat-nav-list al pasar el mouse */
+.mat-nav-list a:hover {
+  color: #fff; /* Color de texto original */
+}
+.mat-list-item > a{
+  background-color: #fff;
+}
+
+

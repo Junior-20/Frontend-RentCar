@@ -1,0 +1,110 @@
+
+import { Component, OnInit,Inject } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import { MatDialogRef,MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Marca } from 'src/app/interfaces/marca';
+import { MarcaService } from 'src/app/services/marca.service';
+import { Modelos } from 'src/app/interfaces/modelos';
+import { ModeloService } from 'src/app/services/modelo.service';
+
+@Component({
+  selector: 'app-add-edit-modelo',
+  templateUrl: './add-edit-modelo.component.html',
+  styleUrls: ['./add-edit-modelo.component.css']
+})
+export class AddEditModeloComponent implements OnInit {
+  formModelo:FormGroup;
+  tituloAccion:string="Nuevo"
+  botonAccion:string="Guardar"
+  listMarcas:Marca[]=[];
+  constructor(private dialogoReferencia:MatDialogRef<AddEditModeloComponent>,
+    private fb:FormBuilder,
+    private _SnackBar:MatSnackBar,
+    private _MarcasServices:MarcaService,
+    private _ModeloServices:ModeloService,
+    @Inject(MAT_DIALOG_DATA) public dataModelo:Modelos
+    ){
+  this.formModelo= this.fb.group({
+    idMarca:['', Validators.required],
+    descripcion: ['', Validators.required],
+    estado: ['', Validators.required]
+  })
+  this._MarcasServices.getMarcas().subscribe({
+    next:(data)=>{
+      this.listMarcas=data
+    },error:(e)=>{}
+  })
+  }
+  ngOnInit(): void {
+    if(this.dataModelo){
+      this.formModelo.patchValue({
+        idMarca:this.dataModelo.idMarca,
+        descripcion: this.dataModelo.descripcion,
+        estado: this.dataModelo.estado
+      });
+      console.log(this.formModelo.value);
+      this.tituloAccion = "Editar";
+      this.botonAccion = "Actualizar";
+    }
+  }
+  MostrarAlerta(msg: string, accion: string) {
+    this._SnackBar.open(msg,accion,{
+      horizontalPosition:"end",
+      verticalPosition:"top",
+      duration:3000
+    });
+  }
+  addModelo(){
+    const modelo: Modelos = {
+      idModelo:0,
+      idMarca:this.formModelo.value.idMarca,
+      descripcion: this.formModelo.value.descripcion,
+      estado: this.formModelo.value.estado
+    }
+    if(this.dataModelo== null){
+      this._ModeloServices.addModelo(modelo).subscribe({
+        next:(data)=>{
+          this.MostrarAlerta("Modelo creado","Listo");
+          this.dialogoReferencia.close("creado");
+        },error:(e)=>{
+         if (e.status === 400) { // Comprueba si hay un error de validación (código de estado 400)
+          const validationErrors = e.error.errors; // Obtiene los errores de validación del cuerpo de la respuesta
+          let errorMsg = '';
+          for (const fieldName in validationErrors) { // Recorre los errores y crea un mensaje de error
+            if (validationErrors.hasOwnProperty(fieldName)) {
+              const errors = validationErrors[fieldName];
+              for (const error of errors) {
+                errorMsg += `${error}\n`;
+              }
+            }
+          }
+          this.MostrarAlerta(errorMsg, 'Cerrar'); // Muestra el mensaje de error en un Snackbar
+        }
+        }
+      })
+    }else{
+      this._ModeloServices.updateModelo(this.dataModelo.idModelo,modelo).subscribe({
+        next:(data)=>{
+          this.MostrarAlerta("Modelo Editado","Listo");
+          this.dialogoReferencia.close("editado");
+        },error:(e)=>{
+          if (e.status === 400) { 
+            const validationErrors = e.error.errors; 
+            let errorMsg = '';
+            for (const fieldName in validationErrors) { 
+              if (validationErrors.hasOwnProperty(fieldName)) {
+                const errors = validationErrors[fieldName];
+                for (const error of errors) {
+                  errorMsg += `${error}\n`;
+                }
+              }
+            }
+            this.MostrarAlerta(errorMsg, 'Cerrar'); 
+          }
+        }
+      })
+    }
+  }
+}

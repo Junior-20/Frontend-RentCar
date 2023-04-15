@@ -1,0 +1,94 @@
+<h1 class="mat-h1" style="text-align: center;">Alquiler de Vehiculos</h1>
+<mat-form-field>
+    <mat-label>Buscar:</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+<div class="mat-elevation-z8">
+      
+    <table  mat-table [dataSource]="dataSource">
+     
+      <ng-container matColumnDef="Idrenta">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element"> {{element.idRenta}} </td>
+      </ng-container>
+   
+      <ng-container matColumnDef="DocCliente">
+        <th mat-header-cell *matHeaderCellDef>Doc.Cliente</th>
+        <td mat-cell *matCellDef="let element">{{element.docCliente}}</td>
+      </ng-container>
+     
+      <ng-container matColumnDef="NombredeEmpleado">
+        <th mat-header-cell *matHeaderCellDef>Empleado</th>
+        <td mat-cell *matCellDef="let element">{{element.nombredeEmpleado}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="NombredeVehiculo">
+        <th mat-header-cell *matHeaderCellDef>Vehiculo</th>
+        <td mat-cell *matCellDef="let element">{{element.nombredeVehiculo}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="NombredeCliente">
+        <th mat-header-cell *matHeaderCellDef>Cliente</th>
+        <td mat-cell *matCellDef="let element">{{element.nombredeCliente}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Fecharenta">
+        <th mat-header-cell *matHeaderCellDef>Alquiler</th>
+        <td mat-cell *matCellDef="let element">{{element.fechaRenta}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Fechadevolucion">
+        <th mat-header-cell *matHeaderCellDef>Devolución</th>
+        <td mat-cell *matCellDef="let element">{{element.fechaDevolucion}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Montopordia">
+        <th mat-header-cell *matHeaderCellDef>MontoxDia</th>
+        <td mat-cell *matCellDef="let element">{{element.montoxDia}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Cantidaddedias">
+        <th mat-header-cell *matHeaderCellDef>No.Dias</th>
+        <td mat-cell *matCellDef="let element">{{element.cantidadDias}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Abono">
+        <th mat-header-cell *matHeaderCellDef>Abono</th>
+        <td mat-cell *matCellDef="let element">{{element.abono}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Comentario">
+        <th mat-header-cell *matHeaderCellDef>Comentario</th>
+        <td mat-cell *matCellDef="let element">{{element.comentario}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Estado">
+        <th mat-header-cell *matHeaderCellDef>Estado</th>
+        <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> 
+            <button (click)="openDialog()"  class="agregar" mat-raised-button color="primary">Nueva Renta</button>    
+        </th>
+        <td mat-cell *matCellDef="let element"> 
+            <mat-icon   (click)="EditarDialog(element) "class="edit"  matTooltip="Editar" fontIcon="edit" [ngClass]="{'disabled': element.estado === 'Rentado'}"></mat-icon>    
+            <mat-icon  (click)="EliminarDialog(element)" matTooltip="Eliminar" class="delete" fontIcon="delete" [ngClass]="{'disabled': element.estado === 'Rentado'}"></mat-icon>    
+        </td>
+    </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+  <br>
+  <button mat-raised-button color="primary" (click)="exportToExcel()" >Exportar a Excel</button>
+  
+
+
+
+

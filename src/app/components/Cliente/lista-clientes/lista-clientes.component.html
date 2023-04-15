@@ -1,0 +1,64 @@
+<h1 class="mat-h1" style="text-align: center;">Gestión de Clientes</h1>
+<mat-form-field>
+    <mat-label>Buscar:</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+<div class="mat-elevation-z8">
+      
+    <table mat-table [dataSource]="dataSource">
+     
+      <ng-container matColumnDef="IdCliente">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element"> {{element.idcliente}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
+      </ng-container>
+      
+      <ng-container matColumnDef="Cedula">
+        <th mat-header-cell *matHeaderCellDef> Cédula </th>
+        <td mat-cell *matCellDef="let element">{{element.cedula}}</td>
+      </ng-container>
+      
+      <ng-container matColumnDef="TipoPersona">
+        <th mat-header-cell *matHeaderCellDef> Tipo de Persona </th>
+        <td mat-cell *matCellDef="let element"> {{element.tipoPersona}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="NoTarjeta">
+        <th mat-header-cell *matHeaderCellDef>No.Tarjeta</th>
+        <td mat-cell *matCellDef="let element">{{element.noTarjetaCr}}</td>
+      </ng-container>
+      
+      <ng-container matColumnDef="LimiteCredito">
+        <th mat-header-cell *matHeaderCellDef>Limite de Credito</th>
+        <td mat-cell *matCellDef="let element">$&nbsp;{{element.limiteCredito}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Estado">
+        <th mat-header-cell *matHeaderCellDef> Estado </th>
+        <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> 
+            <button (click)="openDialog()"  class="agregar" mat-raised-button color="primary">Nuevo Cliente</button>    
+        </th>
+        <td mat-cell *matCellDef="let element"> 
+            <mat-icon   (click)="EditarDialog(element) "class="edit"  matTooltip="Editar" fontIcon="edit"></mat-icon>    
+            <mat-icon  (click)="EliminarDialog(element)" matTooltip="Eliminar" class="delete" fontIcon="delete"></mat-icon>    
+        </td>
+    </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+

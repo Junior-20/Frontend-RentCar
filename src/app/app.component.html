@@ -1,0 +1,5 @@
+<app-nav *ngIf="authService.isLoggedIn"></app-nav>
+<app-login *ngIf="!authService.isLoggedIn && !router.url.includes('/registrar')"></app-login>
+
+<!-- Componente de registro (app-registrar) que se muestra si el URL actual incluye '/registrar' y el usuario no está autenticado -->
+<app-registrouser *ngIf="!authService.isLoggedIn && router.url.includes('/registrar')"></app-registrouser>

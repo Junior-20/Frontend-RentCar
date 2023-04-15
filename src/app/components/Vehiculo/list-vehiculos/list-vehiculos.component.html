@@ -1,0 +1,81 @@
+<h1 class="mat-h1" style="text-align: center;">Gestión de Vehiculos</h1>
+<mat-form-field>
+    <mat-label>Buscar:</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field>
+<div class="mat-elevation-z8">
+      
+    <table mat-table [dataSource]="dataSource">
+     
+      <ng-container matColumnDef="IdVehiculo">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element"> {{element.idVehiculos}} </td>
+      </ng-container>
+   
+      <ng-container matColumnDef="Descripcion">
+        <th mat-header-cell *matHeaderCellDef>Descripcion</th>
+        <td mat-cell *matCellDef="let element">{{element.descripcion}}</td>
+      </ng-container>
+     
+      <ng-container matColumnDef="Nochasis">
+        <th mat-header-cell *matHeaderCellDef>No.Chasis</th>
+        <td mat-cell *matCellDef="let element">{{element.noChasis}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Nomotor">
+        <th mat-header-cell *matHeaderCellDef>No.Motor</th>
+        <td mat-cell *matCellDef="let element">{{element.noMotor}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Noplaca">
+        <th mat-header-cell *matHeaderCellDef>No.Placa</th>
+        <td mat-cell *matCellDef="let element">{{element.noPlaca}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Tipodevehiculo">
+        <th mat-header-cell *matHeaderCellDef>Vehiculo</th>
+        <td mat-cell *matCellDef="let element">{{element.nombreTipodeVehiculo}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Nombredemarca">
+        <th mat-header-cell *matHeaderCellDef>Marca</th>
+        <td mat-cell *matCellDef="let element">{{element.nombreMarcadeVehiculo}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Nombremodelo">
+        <th mat-header-cell *matHeaderCellDef>Modelo</th>
+        <td mat-cell *matCellDef="let element">{{element.nombreModelodeVehiculo}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Tipocombustible">
+        <th mat-header-cell *matHeaderCellDef>Combustible</th>
+        <td mat-cell *matCellDef="let element">{{element.nombreTipoCombustible}}</td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Estado">
+        <th mat-header-cell *matHeaderCellDef> Estado </th>
+        <td mat-cell *matCellDef="let element" [ngClass]="{'fila-amarilla': element.estado === 'Rentado'}"> {{element.estado}} </td>
+      </ng-container>
+  
+     
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> 
+            <button (click)="openDialog()"  class="agregar" mat-raised-button color="primary">Nuevo Vehiculo</button>    
+        </th>
+        <td mat-cell *matCellDef="let element"> 
+            <mat-icon   (click)="EditarDialog(element) "class="edit"  matTooltip="Editar" fontIcon="edit" [ngClass]="{'disabled': element.estado === 'Rentado'}"></mat-icon>    
+            <mat-icon  (click)="EliminarDialog(element)" matTooltip="Eliminar" class="delete" fontIcon="delete" [ngClass]="{'disabled': element.estado === 'Rentado'}"></mat-icon>    
+        </td>
+    </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+
+

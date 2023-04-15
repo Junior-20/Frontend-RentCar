@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Eliminar Marca</h1>
+<div mat-dialog-content>
+ Desea eliminar La Marca "{{dataMarca.descripcion}}"?
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close color="warn"> No Volver</button>
+  <button mat-raised-button color="primary"
+  (click)=" comfirmarDelete()"
+  >Si,Eliminar</button>
+</div>

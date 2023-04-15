@@ -1,0 +1,30 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar style="justify-content: center;" color="warn">Odisea <mat-icon fontIcon="directions_car"></mat-icon></mat-toolbar>
+    <mat-nav-list>
+      <mat-form-field>
+        <mat-select placeholder="Administración">
+          <mat-option routerLink="/marcas">Marcas</mat-option>
+          <mat-option routerLink="/tiposdeVehiculo">Tipos de Vehículos</mat-option>
+          <mat-option routerLink="/modelos">Modelos</mat-option>
+          <mat-option routerLink="/combustibles">Combustible</mat-option>
+          <mat-option routerLink="/documentos">Documentos</mat-option>
+          <mat-option routerLink="/empleados">Empleados</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <a mat-list-item routerLink="/inspecciones">Inspección</a>
+      <a mat-list-item routerLink="/clientes">Clientes</a>
+      <a mat-list-item routerLink="/vehiculos">Vehículos</a>
+      <a mat-list-item routerLink="/rentas">Alquiler de Vehículos</a>
+      <a mat-list-item (click)="logout()">Salir</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-dashboard></app-dashboard>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
