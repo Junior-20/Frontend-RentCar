@@ -12,7 +12,6 @@ import { ListRentasComponent } from './components/Renta/list-rentas/list-rentas.
 import { ListInspeccionesComponent } from './components/Inspeccion/list-inspecciones/list-inspecciones.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrouserComponent } from './components/registrouser/registrouser.component';
-import { RecuperarpasswComponent } from './components/recuperarpassw/recuperarpassw.component';
 import { NavComponent } from './components/Navegacion/nav/nav.component';
 import { DashboardComponent } from './components/Dash/dashboard/dashboard.component';
 
@@ -20,7 +19,6 @@ const routes: Routes = [
   { path: '', redirectTo:'login',pathMatch:'full' },
   { path: 'login', component: LoginComponent },
   { path: 'registrar', component: RegistrouserComponent},
-  { path: 'recuperar', component: RecuperarpasswComponent},
   { path: 'dash', component: DashboardComponent},
     { path: 'marcas', component: ListaMarcaComponent },
     { path: 'tiposdeVehiculo', component: ListaTipodevehiculosComponent },

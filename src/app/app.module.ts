@@ -63,7 +63,6 @@ import { AddEditInspeccionComponent } from './components/Inspeccion/add-edit-ins
 import { DeleteInspeccionComponent } from './components/Inspeccion/delete-inspeccion/delete-inspeccion.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegistrouserComponent } from './components/registrouser/registrouser.component';
-import { RecuperarpasswComponent } from './components/recuperarpassw/recuperarpassw.component';
 
 import { AngularFireModule } from '@angular/fire/compat'
 import { environment } from 'src/environments/environment';
@@ -110,7 +109,6 @@ import { FirestoreModule } from '@angular/fire/firestore';
     DeleteInspeccionComponent,
     LoginComponent,
     RegistrouserComponent,
-    RecuperarpasswComponent
   ],
   imports: [
     BrowserModule,
